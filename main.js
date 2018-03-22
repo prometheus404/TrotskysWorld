@@ -43,6 +43,7 @@ function draw(){
 	stroke(0);
 	strokeWeight(1);
 	rectMode(CENTER);
+	//triangleMode(CENTER);
 	//disegna la scacchiera
 	for(let rig = 0; rig < 8; rig++){
         for(let col = 0; col < 8; col++){
@@ -91,6 +92,10 @@ function drawShape(x,y,shape){
 		case 'sphere':
 			fill(255, 0, 0);
 			ellipse(x, y, l-10, l-10);
+			break;
+		case 'triangle':
+			fill(0,0,255);
+			triangle(x, y + (3/8)*l, x - (3/8)*l, y - (3/8)*l, x + (3/8)*l, y - (3/8)*l);
 			break;
 	}
 }
