@@ -1,20 +1,29 @@
 <!DOCTYPE HTML>
     <head>
-        <title>Trotsky's World</title>
+        <title>Prova P5</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
+        <!--<script src="p5/p5.js"></script>-->
         <script src="main.js"></script>
+        <script src="testSentences.js"></script>
         <link href="style.css" type="text/css" rel="stylesheet"></link>
     </head>
     <body>
-        <div id="cont">
+        <div id="sentences">
+            <!-- <input style="top: 10%" type="text" placeholder="Sentence"></input> -->
+        </div>
+        <div id="bar">
             <!-- <ul>
                 <li>Small</li>
                 <li>Medium</li>
                 <li>Large</li>
             </ul> -->
-            <button onclick="crea('cube')" id="cubeButton" style="left: 0%">Crea cubo</button>
-            <button onclick="crea('sphere')" id="sphereButton" style="left: 10%">Crea sfera</button>
-            <button onclick="pulisci()" id="clearButton" style="left: 20%">Pulisci</button>
+            <button onclick="crea('cube')" id="cubeButton" style="left: 0%">Cubo</button>
+            <button onclick="crea('sphere')" id="sphereButton" style="left: 0%">Sfera</button>
+            <button onclick="crea('triangle')" id="triangleButton" style="left: 00%">Triangolo</button>
+            <button onclick="pulisci()" id="clearButton" style="left: 00%">Pulisci</button>
+
+            <button onclick="newSentence()" style="left: 10%">Sentence</button>
+            <button onClick="deleteSentence()" style="left: 10%">Delete</button>
         </div>
     </body>
 </html>
