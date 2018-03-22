@@ -90,7 +90,7 @@ function drawShape(x,y,shape){
 			rect(x, y, l-10, l-10);
 			break;
 		case 'sphere':
-			fill(255, 0, 0);
+			fill(0, 255, 0);
 			ellipse(x, y, l-10, l-10);
 			break;
 		case 'triangle':
