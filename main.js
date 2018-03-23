@@ -31,7 +31,7 @@ function setScreen(){
 	else{
 	    latoMinore = height;
 	    latoMaggiore = width;
-	    latoScacc = (9*latoMinore)/10;w
+	    latoScacc = (9*latoMinore)/10;
 	    offsetX = (latoMaggiore - latoScacc)/2;
 	    offsetY = 0.05*latoMinore;
     }
@@ -133,7 +133,7 @@ function posToCol(x){
 function mouseClicked(){
 	var x = posToCol(mouseX);
 	var y = posToRig(mouseY);
-	if(x == null || y == null) return;
+	if(x == null || y == null || dragged != undefined) return;
 	//se è già selezionato lo deseleziona
 	if(selX == x && selY == y){
 		selX = undefined;
@@ -167,7 +167,10 @@ function mouseReleased(){
 	if(dragged == null) return;
 	var x = posToCol(mouseX);
 	var y = posToRig(mouseY);
-	if(x == null || y == null) return;
+	if(x == null || y == null){
+		dragged = undefined;	//se trascinato fuori dalla scacchiera elimina l'oggetto trascinato
+		return;
+	}
 	if(matrix[y][x] == undefined){
 		matrix[y][x] = Object.create(dragged);
 		dragged = undefined;
