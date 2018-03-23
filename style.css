@@ -47,6 +47,8 @@ button{
     padding: none;
     background-color: #474747;
     overflow: scroll;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
 }
 input{
     position: relative;
