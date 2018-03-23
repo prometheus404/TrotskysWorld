@@ -67,7 +67,7 @@ function draw(){
     		var x = col*l + l/2;
     		var y = rig*l + l/2;
     		if(rig == selY && col == selX){
-    			stroke(0,255,0);
+    			stroke(255,255,0);
     			strokeWeight(4);
     		}
     		else{
