@@ -169,10 +169,18 @@ function mouseReleased(){
 	var y = posToRig(mouseY);
 	if(x == null || y == null){
 		dragged = undefined;	//se trascinato fuori dalla scacchiera elimina l'oggetto trascinato
+		if(dragX == selX && dragY == selY){
+			selY = undefined;
+			selX = undefined;	//evita che venga selezionata una casella vuota
+		}
 		return;
 	}
 	if(matrix[y][x] == undefined){
 		matrix[y][x] = Object.create(dragged);
+		dragged = undefined;
+	}
+	else{
+		matrix[dragY][dragX] = Object.create(dragged);
 		dragged = undefined;
 	}
 }
