@@ -8,6 +8,7 @@ body{
     border: none;
     padding: none;
     margin: 0;
+    overflow: hidden;
 }
 canvas{
     position: relative;
@@ -46,9 +47,9 @@ button{
     border: none;
     padding: none;
     background-color: #474747;
-    overflow: scroll;
-    overflow: -moz-scrollbars-none;
-    -ms-overflow-style: none;
+    overflow: scroll;                   /*General*/
+    overflow: -moz-scrollbars-vertical;     /*Mozilla*/
+    -ms-overflow-style: none;           /*Microsoft Edge*/
 }
 input{
     position: relative;
