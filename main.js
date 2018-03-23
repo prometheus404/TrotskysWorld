@@ -40,8 +40,6 @@ function setScreen(){
 function draw(){
 	background(71,71,71);
 	translate(offsetX, offsetY);
-	stroke(0);
-	strokeWeight(1);
 	rectMode(CENTER);
 	//triangleMode(CENTER);
 	//disegna la scacchiera
@@ -77,6 +75,8 @@ function draw(){
     		drawShape(x,y,matrix[rig][col])
     	}
     }
+	stroke(0);
+	strokeWeight(1);
     //disegna l'oggetto che viene draggato
     if(dragged != undefined){
     	drawShape(mouseX - offsetX, mouseY - offsetY, dragged);
