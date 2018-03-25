@@ -40,6 +40,8 @@ function setScreen(){
 function draw(){
 	background(71,71,71);
 	translate(offsetX, offsetY);
+	stroke(0);
+	strokeWeight(1);
 	rectMode(CENTER);
 	//triangleMode(CENTER);
 	//disegna la scacchiera
@@ -72,18 +74,16 @@ function draw(){
     			stroke(0);
     			strokeWeight(1);
     		}
-    		drawShape(x,y,matrix[rig][col])
+    		drawShape(x,y,matrix[rig][col]);
     	}
     }
-	stroke(0);
-	strokeWeight(1);
     //disegna l'oggetto che viene draggato
     if(dragged != undefined){
     	drawShape(mouseX - offsetX, mouseY - offsetY, dragged);
     }
 }
 
-function drawShape(x,y,shape){
+function drawShape(x,y,shape,tag){
 	switch(shape.type){
 		case 'cube':
 			fill(255, 0, 0);
@@ -98,6 +98,10 @@ function drawShape(x,y,shape){
 			triangle(x, y + (3/8)*l, x - (3/8)*l, y - (3/8)*l, x + (3/8)*l, y - (3/8)*l);
 			break;
 	}
+	stroke(0);
+	strokeWeight(1);
+	fill(255);
+	text(shape.tag,x + l/6,y + l/4,l-10,l-10);
 }
 
 function crea(s){
@@ -105,7 +109,8 @@ function crea(s){
 		for(col = 0; col < 8; col++){	//TROVA LA PRIMA CELLA LIBERA
 			if(matrix[rig][col] == undefined){
 				matrix[rig][col] = new Object();	//
-				matrix[rig][col].type = s;			//CREA OGGETTO DI TIPO S
+				matrix[rig][col].type = s;			//CREA OGGETTO DI TIPO S 
+				matrix[rig][col].tag = new Array();	//
 				return;
 			}
 		}
@@ -130,10 +135,16 @@ function posToCol(x){
 	return (int)((x-offsetX)/l);
 }
 
+/*
+		**********************
+		* GESTIONE SELEZIONE *
+		**********************
+*/
+
 function mouseClicked(){
 	var x = posToCol(mouseX);
 	var y = posToRig(mouseY);
-	if(matrix[y][x] == undefined || x == null || y == null || dragged != undefined) return;
+	if(x == null || y == null || matrix[y][x] == undefined || dragged != undefined) return;
 	//se è già selezionato lo deseleziona
 	if(selX == x && selY == y){
 		selX = undefined;
@@ -147,10 +158,11 @@ function mouseClicked(){
 }
 
 /*
-		*********************************
-		*PARTE DEDICATA AL TRASCINAMENTO*
-		*********************************
+		**************************
+		* GESTIONE TRASCINAMENTO *
+		**************************
 */
+
 function mousePressed(){
 	dragX = posToCol(mouseX);
 	dragY = posToRig(mouseY);
@@ -183,4 +195,22 @@ function mouseReleased(){
 		matrix[dragY][dragX] = Object.create(dragged);
 		dragged = undefined;
 	}
+}
+
+/*
+		****************
+		* GESTIONE TAG *
+		****************
+*/
+
+function addTag(str, id){
+	if(selX == undefined || selY == undefined) return;
+	matrix[selY][selX].tag.push(str);
+	document.getElementById(id).onclick = function() {removeTag(str,id);};
+}
+
+function removeTag(str, id){
+	if(selX == undefined || selY == undefined || matrix[selY][selX].tag.indexOf(str) == -1) return;
+	matrix[selY][selX].tag.splice(matrix[selY][selX].tag.indexOf(str), 1); //elimina il tag
+	document.getElementById(id).onclick = function() {addTag(str,id);};
 }
