@@ -106,10 +106,10 @@ function drawShape(x,y,shape,tag){
 
 function crea(s){
 	for(let rig = 0; rig < 8; rig++){	//
-		for(col = 0; col < 8; col++){	//TROVA LA PRIMA CELLA LIBERA
+		for(let col = 0; col < 8; col++){	//TROVA LA PRIMA CELLA LIBERA
 			if(matrix[rig][col] == undefined){
 				matrix[rig][col] = new Object();	//
-				matrix[rig][col].type = s;			//CREA OGGETTO DI TIPO S 
+				matrix[rig][col].type = s;			//CREA OGGETTO DI TIPO S
 				matrix[rig][col].tag = new Array();	//
 				return;
 			}
@@ -213,4 +213,65 @@ function removeTag(str, id){
 	if(selX == undefined || selY == undefined || matrix[selY][selX].tag.indexOf(str) == -1) return;
 	matrix[selY][selX].tag.splice(matrix[selY][selX].tag.indexOf(str), 1); //elimina il tag
 	document.getElementById(id).onclick = function() {addTag(str,id);};
+}
+
+/*
+		**************
+		* LOGIC EVAL *
+		**************
+*/
+
+function getElementByTag(tag){
+	 for(rig = 0; rig < 8; rig++){
+		 for(col = 0; col < 8; col++)
+		 	if(matrix[rig][col].tag.indexOf(tag) != -1)
+				return matrix[rig][col];
+	 }
+	 return -1;
+}
+
+function getPosByTag(tag){
+	 for(rig = 0; rig < 8; rig++){
+		 for(col = 0; col < 8; col++)
+		 	if(matrix[rig][col].tag.indexOf(tag) != -1)
+				return new Array(col, rig);
+	 }
+	 return -1;
+}
+
+function Square(tag){
+	var elem = getElementByTag(tag);
+	if(elem == -1) return false;
+	if(elem.type == "cube") return true;
+	return false;
+}
+
+function Circle(tag){
+	var elem = getElementByTag(tag);
+	if(elem == -1) return false;
+	if(elem.type == "sphere") return true;
+	return false;
+}
+
+function Triangle(tag){
+	var elem = getElementByTag(tag);
+	if(elem == -1) return false;
+	if(elem.type == "triangle") return true;
+	return false;
+}
+
+function RightOf(tagA, tagB){
+	return getPosByTag(tagA)[0] < getPosByTag(tagB)[0];
+}
+
+function LeftOf(tagA, tagB){
+	return getPosByTag(tagA)[0] > getPosByTag(tagB)[0];
+}
+
+function Over(tagA, tagB){
+	return getPosByTag(tagA)[1] < getPosByTag(tagB)[1];
+}
+
+function Below(tagA, tagB){
+	return getPosByTag(tagA)[1] > getPosByTag(tagB)[1];
 }
