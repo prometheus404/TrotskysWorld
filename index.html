@@ -5,6 +5,7 @@
         <!--<script src="p5/p5.js"></script>-->
         <script src="main.js"></script>
         <script src="testSentences.js"></script>
+        <script src="barManager.js"></script>
         <link href="style.css" type="text/css" rel="stylesheet"></link>
     </head>
     <body>
@@ -12,16 +13,29 @@
             <!-- <input style="top: 10%" type="text" placeholder="Sentence"></input> -->
         </div>
         <div id="bar">
-            <!-- <ul>
-                <li>Small</li>
-                <li>Medium</li>
-                <li>Large</li>
-            </ul> -->
-            <button onclick="crea('cube')" id="cubeButton" style="left: 0%">Cubo</button>
-            <button onclick="crea('sphere')" id="sphereButton" style="left: 0%">Sfera</button>
-            <button onclick="crea('triangle')" id="triangleButton" style="left: 00%">Triangolo</button>
-            <button onclick="pulisci()" id="clearButton" style="left: 00%">Pulisci</button>
-
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'Shapes')">Shapes</button>
+                <button class="tablinks" onclick="openTab(event, 'Tags')">Tags</button>
+                <button class="tablinks" onclick="openTab(event, 'Others')">Others</button>
+            </div>
+            <div id="Shapes" class="tabcontent">
+                <button onclick="crea('cube')" id="cubeButton" style="left: 0%">Cubo</button>
+                <button onclick="crea('sphere')" id="sphereButton" style="left: 0%">Sfera</button>
+                <button onclick="crea('triangle')" id="triangleButton" style="left: 00%">Triangolo</button>
+                <button onclick="pulisci()" id="clearButton" style="left: 00%">Pulisci</button>
+            </div>
+            <div id="Tags" class="tabcontent">
+                <button id="a" onclick="addTag('a')">a</button>
+                <button id="b" onclick="addTag('b')">b</button>
+                <button id="c" onclick="addTag('c')">c</button>
+                <button id="d" onclick="addTag('d')">d</button>
+                <button id="e" onclick="addTag('e')">e</button>
+                <button id="f" onclick="addTag('f')">f</button>
+            </div>
+            <div id="Others" class="tabcontent">
+                <button onclick="alert('I am useless!')">Useless</button>
+                <button>Too</button>
+            </div>
             <button onclick="newSentence()" style="left: 10%">Sentence</button>
             <button onClick="deleteSentence()" style="left: 10%">Delete</button>
         </div>
