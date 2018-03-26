@@ -184,9 +184,9 @@ function mouseReleased(){
 	var x = posToCol(mouseX);
 	var y = posToRig(mouseY);
 	if(x == null || y == null){
-		dragged = undefined;	//se trascinato fuori dalla scacchiera elimina l'oggetto trascinato
 		for(let x of matrix[rig][col].tag)
 			document.getElementById(x).onclick = function() {addTag(x);}; //riattiva i bottoni dei tag
+		dragged = undefined;	//se trascinato fuori dalla scacchiera elimina l'oggetto trascinato
 		if(dragX == selX && dragY == selY){
 			selY = undefined;
 			selX = undefined;	//evita che venga selezionata una casella vuota
