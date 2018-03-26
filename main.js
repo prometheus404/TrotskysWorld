@@ -118,9 +118,13 @@ function crea(s){
 }
 
 function pulisci(){
-	for(let rig = 0; rig < 8; rig++)
-		for(let col = 0; col < 8; col++)
+	for(let rig = 0; rig < 8; rig++){
+		for(let col = 0; col < 8; col++){
 			matrix[rig][col] = undefined;
+			for(let x of matrix[rig][col].tag)
+				document.getElementById(x).onclick = function() {addTag(x);};
+		}
+	}
 }
 
 function posToRig(y){
@@ -203,16 +207,16 @@ function mouseReleased(){
 		****************
 */
 
-function addTag(str, id){
+function addTag(str){
 	if(selX == undefined || selY == undefined) return;
 	matrix[selY][selX].tag.push(str);
-	document.getElementById(id).onclick = function() {removeTag(str,id);};
+	document.getElementById(str).onclick = function() {removeTag(str);};
 }
 
-function removeTag(str, id){
+function removeTag(str){
 	if(selX == undefined || selY == undefined || matrix[selY][selX].tag.indexOf(str) == -1) return;
 	matrix[selY][selX].tag.splice(matrix[selY][selX].tag.indexOf(str), 1); //elimina il tag
-	document.getElementById(id).onclick = function() {addTag(str,id);};
+	document.getElementById(str).onclick = function() {addTag(str);};
 }
 
 /*
