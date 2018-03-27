@@ -120,7 +120,7 @@ function crea(s){
 function pulisci(){
 	for(let rig = 0; rig < 8; rig++){
 		for(let col = 0; col < 8; col++){
-			if(matrix[rig][col] != undefined{
+			if(matrix[rig][col] != undefined){
 				for(let x of matrix[rig][col].tag)
 					document.getElementById(x).onclick = function() {addTag(x);};
 				matrix[rig][col] = undefined;
