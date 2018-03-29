@@ -105,6 +105,10 @@ function drawShape(x,y,shape,tag){
 }
 
 function crea(s){
+	if(selX != undefined && selY != undefined){	//se è selezionato un elemento
+		matrix[selY][selX].type = s;				//ne sostituisce il tipo
+		return;
+	}
 	for(let rig = 0; rig < 8; rig++){	//
 		for(let col = 0; col < 8; col++){	//TROVA LA PRIMA CELLA LIBERA
 			if(matrix[rig][col] == undefined){
@@ -118,6 +122,8 @@ function crea(s){
 }
 
 function pulisci(){
+	selX = undefined;
+	selY = undefined;
 	for(let rig = 0; rig < 8; rig++){
 		for(let col = 0; col < 8; col++){
 			if(matrix[rig][col] != undefined){
