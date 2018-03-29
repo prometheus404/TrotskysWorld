@@ -17,6 +17,9 @@
                 <button class="tablinks" onclick="openTab(event, 'Shapes')">Shapes</button>
                 <button class="tablinks" onclick="openTab(event, 'Tags')">Tags</button>
                 <button class="tablinks" onclick="openTab(event, 'Others')">Others</button>
+
+                <button onclick="newSentence()" id="newSentButton">Sentence</button>
+                <button onClick="deleteSentence()" id="delSentButton">Delete</button>
             </div>
             <div id="Shapes" class="tabcontent">
                 <button onclick="crea('cube')" id="cubeButton" style="left: 0%">Cubo</button>
@@ -36,8 +39,6 @@
                 <button onclick="alert('I am useless!')">Useless</button>
                 <button>Too</button>
             </div>
-            <button onclick="newSentence()" style="left: 10%">Sentence</button>
-            <button onClick="deleteSentence()" style="left: 10%">Delete</button>
         </div>
     </body>
 </html>

@@ -32,17 +32,20 @@ ul{
 
 #sentences{
     position: absolute;
-    top: 0;
+    top: 5%;
     left: 50%;
-    height: 75%;
+    height: 66%;
     width: 50%;
     border: none;
     padding: none;
     background-color: #474747;
-    overflow: scroll;                   /*General*/
+    overflow-y: visible;
+    overflow-x: hidden;
+    /*overflow: scroll;                   /*General*/
     overflow: -moz-scrollbars-vertical;     /*Mozilla*/
     -ms-overflow-style: none;           /*Microsoft Edge*/
 }
+
 input{
     position: relative;
     left: 5%;
@@ -58,7 +61,6 @@ input:focus{
 
 .tab {
     overflow: hidden;
-    /* border: 1px solid #ccc; */
     background-color: #1f1f1f;
     color: white;
 }
@@ -87,6 +89,14 @@ button:hover {
 button.active {
     background-color: #ccc;
     color: #474747;
+}
+#newSentButton{
+    position: inherit;
+    float: right;
+}
+#delSentButton{
+  position: inherit;
+  float: right; 
 }
 
 .tabcontent {
