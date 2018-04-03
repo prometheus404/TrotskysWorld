@@ -156,9 +156,9 @@ function posToCol(x){
 function mouseClicked(){
 	var x = posToCol(mouseX);
 	var y = posToRig(mouseY);
-	if(x == null || y == null || matrix[y][x] == undefined || dragged != undefined) return;
+	if(x == null || y == null || dragged != undefined) return;
 	//se è già selezionato lo deseleziona
-	if(selX == x && selY == y){
+	if((selX == x && selY == y) || matrix[y][x] == undefined){
 		selX = undefined;
 		selY = undefined;
 	}
