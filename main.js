@@ -99,9 +99,10 @@ function drawShape(x,y,shape,tag){
 			break;
 	}
 	stroke(0);
-	strokeWeight(1);
+	strokeWeight(2);
 	fill(255);
-	text(shape.tag,x + l/6,y + l/4,l-10,l-10);
+	textSize(20);
+	text(shape.tag,x + l/6,y + l/4,l-5,l);
 }
 
 function crea(s){
