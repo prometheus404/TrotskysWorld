@@ -20,3 +20,29 @@ function deleteSentence(){
     i--;
 
 }
+
+function evaluateSentence(){
+    var cose = new Array(i);
+    for(let x = 0; x < i; x++){
+        console.log(x);
+        cose[x] = document.getElementById("text"+ (x+1)).value;
+    }
+    console.log(cose);
+
+    for(let x in cose){
+        if(evaluate(cose[x]))                                                   //se la frase è vera chiama trueSentence
+            trueSentence(x);
+        else                                                                    //altrimenti chiama falseSentence
+            falseSentence(x);
+    }
+}
+
+function trueSentence(){
+    //fill
+    console.log('true');
+}
+
+function falseSentence(){
+    console.log('false');
+    //fill
+}

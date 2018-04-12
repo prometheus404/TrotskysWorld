@@ -1,6 +1,7 @@
 var matrix = new Array();
 var dragged = undefined, dragX, dragY;
 var selX, selY;
+var dimTesto;
 var l, latoMinore, latoMaggiore, offsetX = 0, offsetY = 0, latoScacc;
 
 function setup(){
@@ -9,6 +10,7 @@ function setup(){
 	for(let rig = 0; rig < 8; rig++)
 		matrix[rig] = new Array();
 	setScreen();
+	dimTesto = 15;
 }
 
 function windowResized(){
@@ -82,7 +84,9 @@ function draw(){
     	drawShape(mouseX - offsetX, mouseY - offsetY, dragged);
     }
 }
-
+function resizeText(n){
+	dimTesto = n;
+}
 function drawShape(x,y,shape,tag){
 	switch(shape.type){
 		case 'cube':
@@ -99,10 +103,10 @@ function drawShape(x,y,shape,tag){
 			break;
 	}
 	stroke(0);
-	strokeWeight(2);
+	textSize(dimTesto);
+	strokeWeight(1);
 	fill(255);
-	textSize(20);
-	text(shape.tag,x + l/6,y + l/4,l-5,l);
+	text(shape.tag,x + l/6,y + l/4,l-10,l-10);
 }
 
 function crea(s){
@@ -256,21 +260,21 @@ function getPosByTag(tag){
 
 function Square(tag){
 	var elem = getElementByTag(tag);
-	if(elem == -1) return false;
+	if(elem == -1) return null;					//magari bisogna trovare un metodo più elegante
 	if(elem.type == "cube") return true;
 	return false;
 }
 
 function Circle(tag){
 	var elem = getElementByTag(tag);
-	if(elem == -1) return false;
+	if(elem == -1) return null;					//come sopra
 	if(elem.type == "sphere") return true;
 	return false;
 }
 
 function Triangle(tag){
 	var elem = getElementByTag(tag);
-	if(elem == -1) return false;
+	if(elem == -1) return null;					//idem
 	if(elem.type == "triangle") return true;
 	return false;
 }
