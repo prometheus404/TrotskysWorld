@@ -31,18 +31,22 @@ function evaluateSentence(){
 
     for(let x in cose){
         if(evaluate(cose[x]))                                                   //se la frase è vera chiama trueSentence
-            trueSentence(x);
+            trueSentence(cose.indexOf(x)+2);
         else                                                                    //altrimenti chiama falseSentence
             falseSentence(x);
     }
 }
 
-function trueSentence(){
+function trueSentence(i){
     //fill
-    console.log('true');
+    var id = "text"+i;
+    console.log("true");
+    document.getElementById(id).style.borderColor = "#33e02a";
 }
 
 function falseSentence(){
     console.log('false');
     //fill
+    var id = "text"+i;
+    document.getElementById(id).style.borderColor = "red";
 }
