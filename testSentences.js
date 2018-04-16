@@ -44,6 +44,6 @@ function falseSentence(){
     console.log('false');
     //fill
     var id = "text"+i;
-    document.getElementById(id).style.borderColor = "red";
-    console.log("rosso");
+    document.getElementById(id).style.borderColor = "#ff0000";
+    console.log("red");
 }
