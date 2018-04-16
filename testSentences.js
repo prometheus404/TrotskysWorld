@@ -29,7 +29,7 @@ function evaluateSentence(){
     }
     console.log(cose);
 
-    for(let x in cose){
+    for(let x = 0; x < i; x++){
         if(evaluate(cose[x]))                                                   //se la frase è vera chiama trueSentence
             trueSentence(x+1);
         else                                                                    //altrimenti chiama falseSentence
