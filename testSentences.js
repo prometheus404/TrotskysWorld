@@ -35,15 +35,15 @@ function evaluateSentence(){
 function trueSentence(i){
     //fill
     var id = "text"+i;
-    console.log("true");
+    console.log("true " + id);
     document.getElementById(id).style.borderColor = "#33e02a";
     console.log("verde");
 }
 
-function falseSentence(){
-    console.log('false');
+function falseSentence(i){
     //fill
     var id = "text"+i;
+    console.log('false ' + id);
     document.getElementById(id).style.borderColor = "#ff0000";
     console.log("red");
 }
