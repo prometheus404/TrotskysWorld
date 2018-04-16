@@ -22,15 +22,10 @@ function deleteSentence(){
 }
 
 function evaluateSentence(){
-    var cose = new Array(i);
     for(let x = 0; x < i; x++){
         console.log(x);
-        cose[x] = document.getElementById("text"+ (x+1)).value;
-    }
-    console.log(cose);
-
-    for(let x = 0; x < i; x++){
-        if(evaluate(cose[x]))                                                   //se la frase è vera chiama trueSentence
+        console.log(document.getElementById("text"+ (x+1)).value);
+        if(evaluate(document.getElementById("text"+ (x+1)).value))                                                   //se la frase è vera chiama trueSentence
             trueSentence(x+1);
         else                                                                    //altrimenti chiama falseSentence
             falseSentence(x+1);
