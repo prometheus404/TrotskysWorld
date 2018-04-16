@@ -31,7 +31,7 @@ function evaluateSentence(){
 
     for(let x in cose){
         if(evaluate(cose[x]))                                                   //se la frase è vera chiama trueSentence
-            trueSentence(cose.indexOf(x)+2);
+            trueSentence(x);
         else                                                                    //altrimenti chiama falseSentence
             falseSentence(x);
     }
