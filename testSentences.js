@@ -37,6 +37,7 @@ function trueSentence(i){
     var id = "text"+i;
     console.log("true");
     document.getElementById(id).style.borderColor = "#33e02a";
+    console.log("verde");
 }
 
 function falseSentence(){
@@ -44,4 +45,5 @@ function falseSentence(){
     //fill
     var id = "text"+i;
     document.getElementById(id).style.borderColor = "red";
+    console.log("rosso");
 }
