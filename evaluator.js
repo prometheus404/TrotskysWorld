@@ -8,7 +8,7 @@ function evaluate(s){
     for(let i = 0; i < s.length; i++){
         if(s.charAt(i) == '(') numPar++;
         if(s.charAt(i) == ')') numPar--;
-        if(numPar == 0 && (s.charAt(i) == '^' || s.charAt(i) == 'v')){
+        if(numPar == 0 && (s.charAt(i) == '&' || s.charAt(i) == '|')){
             operators.push(s.charAt(i));
             console.log(s.charAt(i)),
             posOperators.push(i);
@@ -25,10 +25,7 @@ function evaluate(s){
     //se non trova operatori prova a valutare la stringa come atomica
     if(operators.length == 0){
          try{
-            if(s.charAt(0) == '!')
-                return !eval(s.substring(1,s.length));                          //se inizia con not é il contrario del valore
-            else
-                return eval(s);                                                 //altrimenti è il valore
+            return eval(s);                                                     //altrimenti è il valore
          }
          catch(e){                                                              //se non funziona toglie le parentesi e riprova
              var par1 = s.indexOf('(');
@@ -50,8 +47,8 @@ function evaluate(s){
         var next = evaluate(s.substring(posOperators[x]+1, x == posOperators.length - 1? s.length : posOperators[x+1]));
         console.log("prossimo val:"+next);
         switch(operators[x]){
-            case '^': result = result && next;
-            case 'v': result = result || next;
+            case '&': result = result && next;
+            case '|': result = result || next;
         }
         console.log("risultato parziale:" + result);
     }

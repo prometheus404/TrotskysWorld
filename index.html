@@ -39,7 +39,9 @@
             </div>
             <div id="Others" class="tabcontent">
                 <button onclick="alert('I am useless!')">Useless</button>
-                <button>Too</button>
+                <input type="file" onchange='readFile(this)' />
+                <input type="text" id='filename' />
+                <button onclick="saveFile()">save</button>
             </div>
         </div>
     </body>

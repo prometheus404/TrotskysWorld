@@ -104,7 +104,7 @@ function drawShape(x,y,shape,tag){
 	}
 	stroke(0);
 	textSize(dimTesto);
-	strokeWeight(1);
+	strokeWeight(2);
 	fill(255);
 	text(shape.tag,x + l/6,y + l/4,l-10,l-10);
 }
@@ -243,7 +243,7 @@ function removeTag(str){
 function getElementByTag(tag){
 	 for(rig = 0; rig < 8; rig++){
 		 for(col = 0; col < 8; col++)
-		 	if(matrix[rig][col].tag.indexOf(tag) != -1)
+		 	if(matrix[rig][col] != undefined && matrix[rig][col].tag.indexOf(tag) != -1)
 				return matrix[rig][col];
 	 }
 	 return -1;
@@ -252,7 +252,7 @@ function getElementByTag(tag){
 function getPosByTag(tag){
 	 for(rig = 0; rig < 8; rig++){
 		 for(col = 0; col < 8; col++)
-		 	if(matrix[rig][col].tag.indexOf(tag) != -1)
+		 	if(matrix[rig][col] != undefined && matrix[rig][col].tag.indexOf(tag) != -1)
 				return new Array(col, rig);
 	 }
 	 return -1;
@@ -293,4 +293,105 @@ function Over(tagA, tagB){
 
 function Below(tagA, tagB){
 	return getPosByTag(tagA)[1] > getPosByTag(tagB)[1];
+}
+
+/*
+		***********************
+		* GESTIONE FILE INPUT *
+		***********************
+*/
+
+function readFile(path){
+	var reader = new FileReader();
+	reader.onload = function(event){
+		var text = event.target.result;
+		loadSet(text);
+	};
+	reader.readAsText(path.files[0]);
+}
+
+function loadSet(str){
+	console.log(str);
+	var text = str.split("#");
+	// parte del contesto
+	pulisci();																	//pulisce la scacchiera
+	var shape = text[0].split("\n");
+	console.log(shape);
+	for(let x = 0; x < shape.length-1; x++)
+		loadShape(shape[x].split(" "));
+	// parte delle sentences
+	for(let x = i; x > 0; x--)													//rimuove tutte le sentence presenti
+		deleteSentence();
+	var sentence = text[1].split("\n");
+	console.log(sentence);
+	for(let x = 1; x <= sentence.length -2; x++){								//per ogni sentence del file crea una sentence e la riempe con il testo
+		newSentence();
+		document.getElementById("text"+ (x)).value = sentence[x];
+	}
+}
+
+function loadShape(token){														//crea una forma a partire da un array
+	var rig = parseInt(token[0]);
+	var col = parseInt(token[1]);
+	matrix[rig][col] = new Object();
+	matrix[rig][col].type = token[2];
+	matrix[rig][col].tag = new Array();
+	for(let i = 3; i < token.length; i++){
+		selY = rig;
+		selX = col;
+		addTag(token[i]);
+	}
+}
+
+/*
+		************************
+		* GESTIONE FILE OUTPUT *
+		************************
+*/
+
+function saveFile(){
+	var fileName = document.getElementById("filename").value + ".trot";
+	console.log(fileName);
+	var text = setToText();
+	var textBlob = new Blob([text], {type:"text/plain"});
+	var link = document.createElement('a');
+	link.download = fileName;
+	link.innerHTML = "Download File";
+	if (window.webkitURL != null){
+        // Chrome allows the link to be clicked
+        // without actually adding it to the DOM.
+        link.href = window.webkitURL.createObjectURL(textBlob);
+    }
+    else{
+        // Firefox requires the link to be added to the DOM
+        // before it can be clicked.
+        link.href = window.URL.createObjectURL(textBlob);
+		link.id = "tmpLink"
+        link.onclick = "document.body.removeChild(document.getElementById('tmpLink'))";
+        link.style.display = "none";
+        document.body.appendChild(link);
+    }
+
+    link.click();
+}
+
+function setToText(){
+	var text = "";
+	//parte del contesto
+	for(let rig = 0; rig < 8; rig++){
+		for(let col = 0; col < 8; col++){
+			if(matrix[rig][col] != undefined){
+				text += rig + " " + col + " " + matrix[rig][col].type;
+				for(let s of matrix[rig][col].tag)
+					text += " " + s;
+				text += "\n";
+			}
+		}
+	}
+	text += "#\n";
+	//parte delle sentences
+	for(let x = 1; x <= i; x++)
+		text += document.getElementById("text" + x).value + "\n";
+
+	return text;
 }
