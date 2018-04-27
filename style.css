@@ -1,4 +1,14 @@
+@font-face {
+    font-family: 'pangolinnormal';
+    src: url('font/pangolin-webfont.woff') format('woff'),
+         url('font/pangolin-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body{
+    font-family: 'pangolinnormal';
     position: absolute;
     top: 0%;
     left: 0%;
@@ -31,6 +41,8 @@ ul{
 }
 
 #sentences{
+    font-family: 'pangolinnormal';
+    font: 'pangolinnormal';
     position: absolute;
     top: 5%;
     left: 50%;
@@ -59,6 +71,10 @@ input:focus{
     border-color: yellow;
 }
 
+.sentInput {
+    font-family: 'pangolinnormal';
+    font-size: 15px;
+}
 .tab {
     overflow: hidden;
     background-color: #1f1f1f;
@@ -96,7 +112,7 @@ button.active {
 }
 #delSentButton{
   position: inherit;
-  float: right; 
+  float: right;
 }
 
 .tabcontent {

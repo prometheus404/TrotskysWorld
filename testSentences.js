@@ -5,7 +5,7 @@ function newSentence(){
     var inp = document.createElement("input");
     inp.type = "text";
     inp.placeholder="Sentence";
-    inp.style="top: 0%";
+    inp.style="top: 0%; font-family: inherit; font-size: 15px;";
     inp.id = id;
     inp.class = "sentInput"
     var div = document.getElementById("sentences");

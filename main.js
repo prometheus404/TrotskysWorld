@@ -287,6 +287,18 @@ function LeftOf(tagA, tagB){
 	return getPosByTag(tagA)[0] > getPosByTag(tagB)[0];
 }
 
+function SameRow(tagA, tagB){
+	return getPosByTag(tagA)[1] == getPosByTag(tagB)[1];
+}
+
+function SameCol(tagA, tagB){
+	return getPosByTag(tagA)[0] == getPosByTag(tagB)[0];
+}
+
+function Between(tagA, tagB, tagC){ 											//a si trova tra b e c sulla stessa riga o la stessa colonna
+	//boh poi ci penso
+}
+
 function Over(tagA, tagB){
 	return getPosByTag(tagA)[1] < getPosByTag(tagB)[1];
 }
@@ -294,7 +306,6 @@ function Over(tagA, tagB){
 function Below(tagA, tagB){
 	return getPosByTag(tagA)[1] > getPosByTag(tagB)[1];
 }
-
 /*
 		***********************
 		* GESTIONE FILE INPUT *
