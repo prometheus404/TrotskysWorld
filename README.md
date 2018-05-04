@@ -32,4 +32,4 @@ at the moment these are the aviable atomic sentences
 * | = or
 
 ## TO DO
-*start beta testing
+* start beta testing
