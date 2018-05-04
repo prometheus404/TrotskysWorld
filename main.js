@@ -1,3 +1,4 @@
+var SMALL = 0.3, MEDIUM = 0.6, LARGE = 0.9;
 var matrix = new Array();
 var dragged = undefined, dragX, dragY;
 var selX, selY;
@@ -88,18 +89,19 @@ function resizeText(n){
 	dimTesto = n;
 }
 function drawShape(x,y,shape,tag){
+	var ll = l*shape.dim;
 	switch(shape.type){
 		case 'cube':
 			fill(255, 0, 0);
-			rect(x, y, l-10, l-10);
+			rect(x, y, ll , ll);
 			break;
 		case 'sphere':
 			fill(0, 255, 0);
-			ellipse(x, y, l-10, l-10);
+			ellipse(x, y, ll, ll);
 			break;
 		case 'triangle':
 			fill(0,0,255);
-			triangle(x, y + (3/8)*l, x - (3/8)*l, y - (3/8)*l, x + (3/8)*l, y - (3/8)*l);
+			triangle(x, y + (3/8)*ll, x - (3/8)*ll, y - (3/8)*ll, x + (3/8)*ll, y - (3/8)*ll);
 			break;
 	}
 	stroke(0);
@@ -120,10 +122,16 @@ function crea(s){
 				matrix[rig][col] = new Object();	//
 				matrix[rig][col].type = s;			//CREA OGGETTO DI TIPO S
 				matrix[rig][col].tag = new Array();	//
+				matrix[rig][col].dim = LARGE;			//
 				return;
 			}
 		}
 	}
+}
+
+function setSize(dim){
+	if(selX != undefined && selY != undefined)
+		matrix[selY][selX].dim = dim;
 }
 
 function pulisci(){
@@ -279,6 +287,14 @@ function Triangle(tag){
 	return false;
 }
 
+function SameShape(tagA, tagB){
+	var elem1 = getElementByTag(tagA);
+	var elem2 = getElementByTag(tagB)
+	if(elem1 == -1 || elem2 == -1) return null;
+	if(elem1.type == elem2.type) return true;
+	return false;
+}
+
 function RightOf(tagA, tagB){
 	return getPosByTag(tagA)[0] < getPosByTag(tagB)[0];
 }
@@ -305,6 +321,51 @@ function Over(tagA, tagB){
 
 function Below(tagA, tagB){
 	return getPosByTag(tagA)[1] > getPosByTag(tagB)[1];
+}
+
+function Small(tag){
+	var elem = getElementByTag(tag);
+	if(elem == -1) return null;
+	if(elem.dim == SMALL) return true;
+	return false;
+}
+
+function Medium(tag){
+	var elem = getElementByTag(tag);
+	if(elem == -1) return null;
+	if(elem.dim == MEDIUM) return true;
+	return false;
+}
+
+function Large(tag){
+	var elem = getElementByTag(tag);
+	if(elem == -1) return null;
+	if(elem.dim == LARGE) return true;
+	return false;
+}
+
+function Smaller(tagA, tagB){
+	var elem1 = getElementByTag(tagA);
+	var elem2 = getElementByTag(tagB)
+	if(elem1 == -1 || elem2 == -1) return null;
+	if(elem1.dim < elem2.dim) return true;
+	return false;
+}
+
+function Larger(tagA, tagB){
+	var elem1 = getElementByTag(tagA);
+	var elem2 = getElementByTag(tagB)
+	if(elem1 == -1 || elem2 == -1) return null;
+	if(elem1.dim > elem2.dim) return true;
+	return false;
+}
+
+function SameSize(tagA, tagB){
+	var elem1 = getElementByTag(tagA);
+	var elem2 = getElementByTag(tagB)
+	if(elem1 == -1 || elem2 == -1) return null;
+	if(elem1.dim == elem2.dim) return true;
+	return false;
 }
 /*
 		***********************
@@ -346,8 +407,9 @@ function loadShape(token){														//crea una forma a partire da un array
 	var col = parseInt(token[1]);
 	matrix[rig][col] = new Object();
 	matrix[rig][col].type = token[2];
+	matrix[rig][col].dim = token[3];
 	matrix[rig][col].tag = new Array();
-	for(let i = 3; i < token.length; i++){
+	for(let i = 4; i < token.length; i++){
 		selY = rig;
 		selX = col;
 		addTag(token[i]);
@@ -361,7 +423,11 @@ function loadShape(token){														//crea una forma a partire da un array
 */
 
 function saveFile(){
-	var fileName = document.getElementById("filename").value + ".trot";
+	var fileName = document.getElementById("filename").value;
+	if(fileName.length == 0)
+		return;
+	else
+		fileName = fileName + ".trot";
 	console.log(fileName);
 	var text = setToText();
 	var textBlob = new Blob([text], {type:"text/plain"});
@@ -392,7 +458,7 @@ function setToText(){
 	for(let rig = 0; rig < 8; rig++){
 		for(let col = 0; col < 8; col++){
 			if(matrix[rig][col] != undefined){
-				text += rig + " " + col + " " + matrix[rig][col].type;
+				text += rig + " " + col + " " + matrix[rig][col].type + " " + matrix[rig][col].dim;
 				for(let s of matrix[rig][col].tag)
 					text += " " + s;
 				text += "\n";

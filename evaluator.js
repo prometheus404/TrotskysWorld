@@ -67,7 +67,7 @@ function evaluate(s){
         switch(operators[x]){
             case '&': result = result && next; break;
             case '|': result = result || next; break;
-            case '-': result = (result && next) || !result; break;
+            case '-': result = !result || (result && next); break;
             case '_': result = (result && next) || (!result && !next); break;
         }
         console.log("risultato parziale:" + result);
@@ -92,14 +92,14 @@ function error(){
 
 function forEach(variable, sentence){
     console.log(variable);
-    sentence = replaceAll(sentence, variable, "'t'");
-    console.log(sentence);
+    //sentence = replaceAll(sentence, variable, "'"+variable+"'");
+    //console.log(sentence);
     for(let rig = 0; rig < 8; rig++){
         for(let col = 0; col < 8; col++){
             if(matrix[rig][col] != undefined){
-                matrix[rig][col].tag.push('t');
+                matrix[rig][col].tag.push(variable);
                 var res = evaluate(sentence);
-                matrix[rig][col].tag.splice(matrix[rig][col].tag.indexOf('t'), 1);
+                matrix[rig][col].tag.splice(matrix[rig][col].tag.indexOf(variable), 1);
                 if(!res)
                     return false;
             }
@@ -109,14 +109,14 @@ function forEach(variable, sentence){
 }
 
 function exist(variable, sentence){
-    sentence = replaceAll(sentence, variable,"'t'"); //non funzia
-    console.log(sentence);
+    //sentence = replaceAll(sentence, variable,"'"+variable+"'");
+    //console.log(sentence);
     for(let rig = 0; rig < 8; rig++){
         for(let col = 0; col < 8; col++){
             if(matrix[rig][col] != undefined){
-                matrix[rig][col].tag.push('t');
+                matrix[rig][col].tag.push(variable);
                 var res = evaluate(sentence);
-                matrix[rig][col].tag.splice(matrix[rig][col].tag.indexOf('t'), 1);
+                matrix[rig][col].tag.splice(matrix[rig][col].tag.indexOf(variable), 1);
                 if(res)
                     return true;
             }
@@ -125,6 +125,6 @@ function exist(variable, sentence){
     return false;
 }
 
-function replaceAll(str, toReplace, replaceWith){
-    return str.split(toReplace).join(replaceWith);
-}
+//function replaceAll(str, toReplace, replaceWith){
+//    return str.split(toReplace).join(replaceWith);
+//}

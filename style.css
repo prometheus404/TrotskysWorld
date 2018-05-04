@@ -8,7 +8,6 @@
 }
 
 body{
-    font-family: 'pangolinnormal';
     position: absolute;
     top: 0%;
     left: 0%;
@@ -110,7 +109,13 @@ button.active {
     position: inherit;
     float: right;
 }
+
 #delSentButton{
+  position: inherit;
+  float: right;
+}
+
+#evalSentButton{
   position: inherit;
   float: right;
 }
@@ -120,4 +125,21 @@ button.active {
     padding: 6px 12px;
     /* border: 1px solid #ccc; */
     border-top: none;
+}
+
+#loadFile {
+    width: 45%;
+    height: 5%;
+    border-width: thin;
+
+}
+
+#filename {
+    width: 45%;
+}
+
+#saveButton {
+    position: relative;
+    top: inherit;
+    left: 70%;
 }
