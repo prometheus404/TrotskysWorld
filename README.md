@@ -2,7 +2,7 @@
 a shitty version of a shittier software to test the basics of logic
 
 ## RULES
-* tags and variables must be placed between inverted commas e.g Square('a')
+* tags and variables must be placed between inverted commas e.g. Square('a')
 * everything that follows "exist" or "for each" goes between brackets e.g. $x(Square('x'))
 
 ## ATOMIC SENTENCES
