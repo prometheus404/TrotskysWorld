@@ -91,11 +91,11 @@ function resizeText(n){
 function drawShape(x,y,shape,tag){
 	var ll = l*shape.dim;
 	switch(shape.type){
-		case 'cube':
+		case 'square':
 			fill(255, 0, 0);
 			rect(x, y, ll , ll);
 			break;
-		case 'sphere':
+		case 'circle':
 			fill(0, 255, 0);
 			ellipse(x, y, ll, ll);
 			break;
@@ -269,14 +269,14 @@ function getPosByTag(tag){
 function Square(tag){
 	var elem = getElementByTag(tag);
 	if(elem == -1) return null;					//magari bisogna trovare un metodo più elegante
-	if(elem.type == "cube") return true;
+	if(elem.type == "square") return true;
 	return false;
 }
 
 function Circle(tag){
 	var elem = getElementByTag(tag);
 	if(elem == -1) return null;					//come sopra
-	if(elem.type == "sphere") return true;
+	if(elem.type == "circle") return true;
 	return false;
 }
 
