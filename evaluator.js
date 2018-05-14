@@ -92,7 +92,7 @@ function error(){
 
 function forEach(variable, sentence){
     console.log(variable);
-    //sentence = replaceAll(sentence, variable, "'"+variable+"'");
+    sentence = replaceAll(sentence, variable, "'"+variable+"'");
     //console.log(sentence);
     for(let rig = 0; rig < 8; rig++){
         for(let col = 0; col < 8; col++){
@@ -109,7 +109,7 @@ function forEach(variable, sentence){
 }
 
 function exist(variable, sentence){
-    //sentence = replaceAll(sentence, variable,"'"+variable+"'");
+    sentence = replaceAll(sentence, variable,"'"+variable+"'");
     //console.log(sentence);
     for(let rig = 0; rig < 8; rig++){
         for(let col = 0; col < 8; col++){
@@ -125,6 +125,6 @@ function exist(variable, sentence){
     return false;
 }
 
-//function replaceAll(str, toReplace, replaceWith){
-//    return str.split(toReplace).join(replaceWith);
-//}
+function replaceAll(str, toReplace, replaceWith){
+    return str.split(toReplace).join(replaceWith);
+}

@@ -1,3 +1,4 @@
+var a = 'a', b = 'b', c = 'c', d = 'd', e = 'e', f = 'f';
 var SMALL = 0.3, MEDIUM = 0.6, LARGE = 0.9;
 var matrix = new Array();
 var dragged = undefined, dragX, dragY;
@@ -296,11 +297,11 @@ function SameShape(tagA, tagB){
 }
 
 function RightOf(tagA, tagB){
-	return getPosByTag(tagA)[0] < getPosByTag(tagB)[0];
+	return getPosByTag(tagA)[0] > getPosByTag(tagB)[0];
 }
 
 function LeftOf(tagA, tagB){
-	return getPosByTag(tagA)[0] > getPosByTag(tagB)[0];
+	return getPosByTag(tagA)[0] < getPosByTag(tagB)[0];
 }
 
 function SameRow(tagA, tagB){
@@ -315,11 +316,11 @@ function Between(tagA, tagB, tagC){ 											//a si trova tra b e c sulla stes
 	//boh poi ci penso
 }
 
-function Over(tagA, tagB){
+function BackOf(tagA, tagB){
 	return getPosByTag(tagA)[1] < getPosByTag(tagB)[1];
 }
 
-function Below(tagA, tagB){
+function FrontOf(tagA, tagB){
 	return getPosByTag(tagA)[1] > getPosByTag(tagB)[1];
 }
 
