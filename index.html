@@ -1,50 +1,13 @@
-<!DOCTYPE HTML>
+<HTML>
     <head>
-        <title>Trotsky's World</title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
-        <!--<script src="p5/p5.js"></script>-->
-        <script src="main.js"></script>
-        <script src="evaluator.js"></script>
-        <script src="testSentences.js"></script>
-        <script src="barManager.js"></script>
+        <title>Trotsky's homepage</title>
         <link href="style.css" type="text/css" rel="stylesheet"></link>
     </head>
     <body>
-        <div id="sentences">
-            <!-- <input style="top: 10%" type="text" placeholder="Sentence"></input> -->
-        </div>
-        <div id="bar">
-            <div class="tab">
-                <button class="tablinks" onclick="openTab(event, 'Shapes')">Shapes</button>
-                <button class="tablinks" onclick="openTab(event, 'Tags')">Tags</button>
-                <button class="tablinks" onclick="openTab(event, 'Others')">Others</button>
-
-                <button onclick="newSentence()" id="newSentButton">Sentence</button>
-                <button onClick="deleteSentence()" id="delSentButton">Delete</button>
-                <button onClick="evaluateSentence()" id="evalSentButton">Eval</button>
-            </div>
-            <div id="Shapes" class="tabcontent">
-                <button onclick="crea('square')" id="cubeButton">Square</button>
-                <button onclick="crea('circle')" id="sphereButton">Circle</button>
-                <button onclick="crea('triangle')" id="triangleButton">Triangle</button>
-                <button onclick="setSize(LARGE)" class="dimButtons">Large</button>
-                <button onclick="setSize(MEDIUM)" class="dimButtons">Medium</button>
-                <button onclick="setSize(SMALL)" class="dimButtons">Small</button>
-                <button onclick="pulisci()" id="clearButton" style="left: 20%">Clear</button>
-            </div>
-            <div id="Tags" class="tabcontent">
-                <button id="a" onclick="addTag('a')">a</button>
-                <button id="b" onclick="addTag('b')">b</button>
-                <button id="c" onclick="addTag('c')">c</button>
-                <button id="d" onclick="addTag('d')">d</button>
-                <button id="e" onclick="addTag('e')">e</button>
-                <button id="f" onclick="addTag('f')">f</button>
-            </div>
-            <div id="Others" class="tabcontent">
-                <input type="file" onchange='readFile(this)' id='loadFile' />
-                <input type="text" id='filename' placeholder="filename" />
-                <button onclick="saveFile()" id='saveButton'>Save</button>
-            </div>
-        </div>
+        <p id="title">
+            Trotsky's World
+        </p>
+        <a id="startButton" href="trotsky.html">Start</a>
+        <a id="helpButton" href="help.html">Help</a>
     </body>
 </html>

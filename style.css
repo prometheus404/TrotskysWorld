@@ -18,6 +18,7 @@ body{
     padding: none;
     margin: 0;
     overflow: hidden;
+
 }
 canvas{
     position: relative;
@@ -80,8 +81,36 @@ input:focus{
     background-color: #1f1f1f;
     color: white;
 }
-button{
+
+#title{
+    text-align: center;
+    font-family: 'pangolinnormal';
+    font-size: 1000%;
+}
+#startButton{
+    position: absolute;
+    font-family: 'pangolinnormal';
+    font-size: 300%;
+    left: 20%;
+    top: 50%;
+    height: 10%;
+    width: 25%;
+    border-radius: 2%;
+}
+#helpButton{
+    position: absolute;
+    font-family: 'pangolinnormal';
+    font-size: 300%;
+    right: 20%;
+    top: 50%;
+    height: 10%;
+    width: 25%;
+    border-radius: 2%;
+}
+
+button, a{
     position: relative;
+    text-align: center;
     top: 0%;
     width: 10%;
     height: 40%;
@@ -93,11 +122,11 @@ button{
     background-color: #1f1f1f;
     color: white;
     transition: 0.3s;
-
+    text-decoration: none;
     padding: 14px 16px;
 }
 
-button:hover {
+button:hover, a:hover {
     background-color: #aaa;
     color: #474747;
 }
