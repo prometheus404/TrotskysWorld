@@ -1,5 +1,5 @@
 # TrotskysWorld
-a shitty version of a shittier software to test the basics of logic
+a basic version of a basic software to test the basics of logic
 
 ## RULES
 * Tarskis rules
